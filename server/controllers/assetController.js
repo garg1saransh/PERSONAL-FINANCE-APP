@@ -3,7 +3,8 @@ const Asset = require('../models/Asset');
 // GET all assets
 exports.getAssets = async (req, res) => {
   try {
-    const assets = await Asset.find();
+    const userId = req.user.id; // extracted by authMiddleware
+    const assets = await Asset.find({ userId });
     res.json(assets);
   } catch (err) {
     res.status(500).json({ error: err.message });

@@ -1,12 +1,16 @@
+// models/Asset.js
 const mongoose = require('mongoose');
 
 const assetSchema = new mongoose.Schema({
-  type: { type: String, required: true },       // stock, mutual fund, FD, etc.
-  name: { type: String, required: true },
-  amountInvested: { type: Number, required: true },
-  currentValue: { type: Number, required: true },
-  purchaseDate: { type: Date, required: true },
-  metadata: { type: Object },                  // extra data like units, interest, etc.
-}, { timestamps: true });
+  type: String,
+  name: String,
+  value: Number,
+  date: Date,
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
+});
 
 module.exports = mongoose.model('Asset', assetSchema);

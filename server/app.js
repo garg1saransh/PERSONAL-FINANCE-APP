@@ -18,6 +18,10 @@ mongoose.connect(process.env.MONGO_URI, {
 const assetRoutes = require('./routes/assetRoutes');
 app.use('/api/assets', assetRoutes);
 
+//Authentication
+const authRoutes = require('./routes/authRoutes');
+app.use('/api/auth', authRoutes);
+
 // Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
